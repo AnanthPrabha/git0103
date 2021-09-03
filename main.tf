@@ -10,3 +10,7 @@ resource "aws_instance" "mytask" {
     command = "echo ${aws_instance.mytask.public_ip} > inventory.txt"
 }
 }
+ output "PublicDns"{
+  value = aws_instance.mytask.public_dns
+}
+
