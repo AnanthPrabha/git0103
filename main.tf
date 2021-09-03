@@ -7,9 +7,6 @@ resource "aws_instance" "myInstanceAWS" {
   instance_type = "${var.instance_type}"
   ami = "${var.ami_id}"
   key_name = "${var.ssh_key_name}"
-  tags {
-    Name = "task"
-  }
 }
 
 resource "null_resource" "ConfigureAnsibleLabelVariable" {
