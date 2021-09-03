@@ -30,7 +30,7 @@ resource "null_resource" "ProvisionRemoteHostsIpToAnsibleHosts" {
     type = "ssh"
     user = "${var.ssh_user_name}"
     host = "${element(aws_instance.myInstanceAWS.*.public_ip, count.index)}"
-    private_key = file("${var.ssh_key_path}")
+    private_key = file("/root/mytask/Sing.pem")
   }
   provisioner "remote-exec" {
     inline = [
