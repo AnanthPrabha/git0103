@@ -1,5 +1,5 @@
 ---
-- name: Setup Nginx server on myserver list
+- name: Setup Nginx server
   hosts: all
   become: True
   tasks:
