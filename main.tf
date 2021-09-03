@@ -2,7 +2,7 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-resource "aws_instance" "myInstanceAWS" {
+resource "aws_instance" "mytask" {
   count = "${var.instance_count}"
   instance_type = "${var.instance_type}"
   ami = "${var.ami_id}"
@@ -46,15 +46,4 @@ resource "null_resource" "ProvisionRemoteHostsIpToAnsibleHosts" {
   provisioner "local-exec" {
     command = "echo ${element(aws_instance.myInstanceAWS.*.public_ip, count.index)} >> hosts"
   }
-}
-
-resource "null_resource" "ModifyApplyAnsiblePlayBook" {
-  provisioner "local-exec" {
-    command = "sed -i -e '/hosts:/ s/: .*/: ${var.dev_host_label}/' play.yml"   #change host label in playbook dynamically
-  }
-
-  provisioner "local-exec" {
-    command = "sleep 10; ansible-playbook -i hosts play.yml"
-  }
-  depends_on = ["null_resource.ProvisionRemoteHostsIpToAnsibleHosts"]
 }
