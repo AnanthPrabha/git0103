@@ -23,9 +23,4 @@
 
     - name: Get status of nginx installed
       command: systemctl status nginx
-
-    - name: Ansible copy file to remote server
-      copy:
-        src: /home/ec2-user/sample.txt
-        dest: /home/ec2-user
 ...
