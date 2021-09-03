@@ -17,7 +17,7 @@ variable "ssh_key_name" {
     default = "Sing"
 }
 variable "ssh_key_path" {
-    default = "/root/mytask/Sing.pem"
+    default = "~/.ssh/id_rsa"
 }
 variable "instance_count" {
     default = 1
