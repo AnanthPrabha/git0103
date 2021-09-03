@@ -24,7 +24,7 @@ variable "instance_count" {
 }
 #variable "subnet_id" {
     #default = "subnet-e03d78ce"
-}
+#}
 variable "dev_host_label" {
     default = "terra_ansible_host"
 }
