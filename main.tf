@@ -2,12 +2,11 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-resource "aws_instance" "mytask" {
+resource "aws_instance" "myInstanceAWS" {
   count = "${var.instance_count}"
   instance_type = "${var.instance_type}"
   ami = "${var.ami_id}"
   key_name = "${var.ssh_key_name}"
-  #subnet_id = "${var.subnet_id}"
   tags {
     Name = "task"
   }
