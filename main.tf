@@ -30,7 +30,7 @@ resource "null_resource" "ProvisionRemoteHostsIpToAnsibleHosts" {
     type = "ssh"
     user = "${var.ssh_user_name}"
     host = "${element(aws_instance.myInstanceAWS.*.public_ip, count.index)}"
-    private_key = file("/root/.ssh/id_rsa")
+    private_key = file("/root/.ssh/id_rsa.pem")
   }
 
   provisioner "local-exec" {
