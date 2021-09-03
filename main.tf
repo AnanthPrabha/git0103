@@ -55,6 +55,41 @@ resource "aws_instance" "mytask" {
 }
 }
 
+resource "null_resource" "demo" {
+  provisioner "local-exec" {
+    command = "echo [task] > hosts"
+  }
+  provisioner "local-exec" {
+    command = "echo ansible_ssh_user=ec2-user >> hosts"
+  }
+  provisioner "local-exec" {
+    command = "echo ansible_ssh_private_key_file= /root/mytask/Sing.pem >> hosts"
+  }
+  provisioner "local-exec" {
+    command = "echo [task] >> hosts"
+  }
+}
+
+resource "null_resource" "ProvisionRemoteHostsIpToAnsibleHosts" {
+  count = "1"
+  connection {
+    type = "ssh"
+    user = "ec2-user"
+    host = "${element(aws_instance.mytask.*.public_ip, count.index)}"
+    private_key = "${file("/root/mytask/Sing.pem")}"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum update -y",
+      "sudo yum install python-setuptools python-pip -y",
+      "sudo pip install httplib2"
+    ]
+  }
+  provisioner "local-exec" {
+    command = "echo ${element(aws_instance.mytask.*.public_ip, count.index)} >> hosts"
+  }
+}
+
   output "PublicDns"{
   value = aws_instance.mytask.public_dns
 }
