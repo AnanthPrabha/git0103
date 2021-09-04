@@ -43,5 +43,5 @@ resource "null_resource" "ModifyApplyAnsiblePlayBook" {
     command = "sed -i -e '/hosts:/ s/: .*/: ${var.dev_host_label}/' play.yml"
   }
 
-  depends_on = ["null_resource" "ProvisionRemoteHostsIpToAnsibleHosts"]
+  depends_on = ["null_resource.ProvisionRemoteHostsIpToAnsibleHosts"]
 }
