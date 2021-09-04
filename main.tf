@@ -40,7 +40,7 @@ resource "null_resource" "ProvisionRemoteHostsIpToAnsibleHosts" {
 }
 resource "null_resource" "ModifyApplyAnsiblePlayBook" {
   provisioner "local-exec" {
-    command = "sed -i -e '/hosts:/ s/: .*/: ${var.dev_host_label}/' play.yml"
+    command = "sed -i -e '/hosts:/ s/: .*/: ${var.dev_host_label}/' play.yaml"
   }
 
   depends_on = ["null_resource.ProvisionRemoteHostsIpToAnsibleHosts"]
