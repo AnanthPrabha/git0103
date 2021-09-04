@@ -6,7 +6,7 @@ resource "aws_instance" "myInstanceAWS" {
   count = "${var.instance_count}"
   instance_type = "${var.instance_type}"
   ami = "${var.ami_id}"
-  key_name = "Sing"
+  key_name = "Sing.pem"
 }
 
 resource "null_resource" "ConfigureAnsibleLabelVariable" {
