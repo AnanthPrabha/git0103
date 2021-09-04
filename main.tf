@@ -42,6 +42,9 @@ resource "null_resource" "ModifyApplyAnsiblePlayBook" {
   provisioner "local-exec" {
     command = "sed -i -e '/hosts:/ s/: .*/: ${var.dev_host_label}/' play.yaml"
   }
-
+ 
+ provisioner "local-exec" {
+    command = "sleep 10; ansible-playbook -i hosts play.yml"
+  }
   depends_on = ["null_resource.ProvisionRemoteHostsIpToAnsibleHosts"]
 }
