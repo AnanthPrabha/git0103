@@ -51,7 +51,7 @@ resource "null_resource" "ModifyApplyAnsiblePlayBook" {
   }
  
  provisioner "local-exec" {
-    command = "sleep 10; ansible-playbook -i hosts play.yml"
+    command = "sleep 10; ansible-playbook -i hosts play.yaml"
   }
   depends_on = ["null_resource.ProvisionRemoteHostsIpToAnsibleHosts"]
 }
