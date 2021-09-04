@@ -13,9 +13,9 @@ variable "ami_id" {
 variable "ssh_user_name" {
     default = "ec2-user"
 }
-variable "ssh_key_name" {
-    default = "Sing"
-}
+#variable "ssh_key_name" {
+ #   default = "Sing."
+#}
 variable "ssh_key_path" {
    default = "/root/mytask/Sing.pem"
 }
