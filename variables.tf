@@ -17,7 +17,7 @@ variable "ssh_user_name" {
  #   default = "Sing."
 #}
 variable "ssh_key_path" {
-   default = "./Sing.pem"
+   default = "/var/lib/jenkins/workspace/Mytask/Sing.pem"
 }
 variable "instance_count" {
     default = 1
